@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="user"
+            type="com.example.nanchen.databindingdemo.User">
+        </variable>
+    </data>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight = "1"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="com.example.nanchen.databindingdemo.MainActivity">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:imageUrl="@{ user.icon }"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:onClick="@{user.clickName}"
+            android:textColor="@{user.vip? 0xffff0000:0xff000000}"
+            android:text="@{user.nickName + `(` + user.name +`)`}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:onLongClick="@{user.longClickNickName}"
+            android:text="@{user.nickName ?? user.name}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textColor="@{user.level &lt; 3 ? 0xff03bbf9 : 0xfff60bdb }"
+            android:text="@{user.email}"/>
+    </LinearLayout>
+</layout>
